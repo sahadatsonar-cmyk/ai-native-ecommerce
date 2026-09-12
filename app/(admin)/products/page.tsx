@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { actionGetProducts } from "./actions";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -30,14 +29,12 @@ export default async function AdminProductsPage() {
             Manage your product catalog
           </p>
         </div>
-        <Button asChild={undefined}>
-          <Link
-            href="/admin/products/new"
-            className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4"
-          >
-            Add Product
-          </Link>
-        </Button>
+        <Link
+          href="/admin/products/new"
+          className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4"
+        >
+          Add Product
+        </Link>
       </div>
 
       {error && (
