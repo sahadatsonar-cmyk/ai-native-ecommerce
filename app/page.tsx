@@ -73,10 +73,10 @@ export default async function HomePage() {
               </>
             ) : (
               <div className="flex gap-3">
-                <Button asChild>
+                <Button>
                   <Link href="/login">Sign in</Link>
                 </Button>
-                <Button asChild variant="outline">
+                <Button variant="outline">
                   <Link href="/register">Register</Link>
                 </Button>
               </div>

@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+
 
 export default function RegisterPage() {
   return (
@@ -22,9 +22,12 @@ export default function RegisterPage() {
           <p className="text-sm text-muted-foreground text-center">
             For now, please use the demo accounts available on the login page.
           </p>
-          <Button asChild className="w-full">
-            <Link href="/login">Go to Login</Link>
-          </Button>
+          <Link
+            href="/login"
+            className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 w-full"
+          >
+            Go to Login
+          </Link>
         </CardContent>
       </Card>
     </main>
