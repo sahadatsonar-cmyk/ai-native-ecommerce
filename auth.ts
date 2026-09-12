@@ -79,7 +79,7 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
     ...authConfig.callbacks,
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id!;
+        token.id = user.id as string;
         token.role = user.role;
         token.permissions = user.permissions;
         token.storeId = user.storeId;
@@ -88,10 +88,10 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
     },
     async session({ session, token }) {
       if (token && session.user) {
-        session.user.id = token.id;
-        session.user.role = token.role;
-        session.user.permissions = token.permissions;
-        session.user.storeId = token.storeId;
+        session.user.id = token.id as string;
+        session.user.role = token.role as Role;
+        session.user.permissions = token.permissions as Permission[];
+        session.user.storeId = token.storeId as string | null | undefined;
       }
       return session;
     },
