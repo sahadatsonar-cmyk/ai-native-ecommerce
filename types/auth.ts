@@ -1,9 +1,4 @@
-export type Role =
-  | "super_admin"
-  | "admin"
-  | "manager"
-  | "staff"
-  | "customer";
+export type Role = "super_admin" | "admin" | "manager" | "staff" | "customer";
 
 export type Permission =
   | "products.read"
@@ -44,9 +39,7 @@ declare module "next-auth" {
     permissions: Permission[];
     storeId?: string | null;
   }
-}
 
-declare module "next-auth/jwt" {
   interface JWT {
     id: string;
     role: Role;
