@@ -4,8 +4,6 @@ import { z } from "zod";
 import { authConfig } from "./auth.config";
 import type { Role, Permission } from "./types/auth";
 
-// Temporary in-memory users for Phase 05
-// Will be replaced by database in later phases
 const DEMO_USERS = [
   {
     id: "1",
@@ -44,6 +42,7 @@ const DEMO_USERS = [
 
 export const { auth, signIn, signOut, handlers } = NextAuth({
   ...authConfig,
+  trustHost: true,
   providers: [
     Credentials({
       async authorize(credentials) {
@@ -76,7 +75,6 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
     }),
   ],
   callbacks: {
-    ...authConfig.callbacks,
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id as string;
@@ -90,7 +88,7 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
       if (token && session.user) {
         session.user.id = token.id as string;
         session.user.role = token.role as Role;
-        session.user.permissions = token.permissions as Permission[];
+        session.user.permissions = (token.permissions as Permission[]) ?? [];
         session.user.storeId = token.storeId as string | null | undefined;
       }
       return session;
